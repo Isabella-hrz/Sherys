@@ -25,5 +25,5 @@ Main.newDropdown("Tools", "Select a Tool", {"Auto Weights", "Auto Push-Ups", "Au
 
     currentConnection = runService.Heartbeat:Connect(function()
         muscleEvent:FireServer("rep")
-    end)
+    end)
 end)
