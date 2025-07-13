@@ -7,6 +7,6 @@ local Main = DrRayLibrary.newTab("Main", "ImageIdHere")
 Main.newLabel("Sherya Script By Isabella")
 Main.newLabel("Bienvenido,Welcome")
 
-Main.newDropdown("Dropdown", "Select one of these options!", {"Auto Pesas", "Auto Flexiones", "Auto Parada de manos", "Auto Abdominales"}, function(selectedOption)
-    print(Selecciona-una-herramienta)
+Main.newDropdown("Herramientas", "Selecciona una herramienta", {"Auto Pesas", "Auto Flexiones", "Auto Parada de manos", "Auto Abdominales"}, function(selectedOption)
+    print(selectedOption)
 end)
