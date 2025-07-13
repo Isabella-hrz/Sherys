@@ -1,12 +1,29 @@
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
-
 local window = DrRayLibrary:Load("Sherya Script", "Default")
-
 local Main = DrRayLibrary.newTab("Main", "ImageIdHere")
 
 Main.newLabel("Sherya Script By Isabella")
-Main.newLabel("Bienvenido,Welcome")
+Main.newLabel("Welcome")
 
-Main.newDropdown("Herramientas", "Selecciona una herramienta", {"Auto Pesas", "Auto Flexiones", "Auto Parada de manos", "Auto Abdominales"}, function(selectedOption)
-    print(selectedOption)
+local player = game:GetService("Players").LocalPlayer
+local muscleEvent = player:WaitForChild("muscleEvent")
+local runService = game:GetService("RunService")
+
+local currentConnection
+
+Main.newDropdown("Tools", "Select a Tool", {"Auto Weights", "Auto Push-Ups", "Auto Handstands", "Auto Sit-Ups"}, function(selectedOption)
+    if currentConnection then
+        currentConnection:Disconnect()
+    end
+
+    local backpack = player:WaitForChild("Backpack")
+    local tool = backpack:FindFirstChild(selectedOption) or player.Character:FindFirstChild(selectedOption)
+
+    if tool then
+        player.Character.Humanoid:EquipTool(tool)
+    end
+
+    currentConnection = runService.Heartbeat:Connect(function()
+        muscleEvent:FireServer("rep")
+    end)
 end)
